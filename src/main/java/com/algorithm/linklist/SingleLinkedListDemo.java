@@ -1,5 +1,7 @@
 package com.algorithm.linklist;
 
+import java.util.Stack;
+
 /**
  * @Description TODO
  * @Author zhenxing.dong
@@ -7,11 +9,13 @@ package com.algorithm.linklist;
  */
 public class SingleLinkedListDemo {
 
-    public static void main(String args[])throws Exception {
+    public static void main(String args[]) throws Exception {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         HeroNode node1 = new HeroNode(1, "宋江", "及时雨");
         HeroNode node2 = new HeroNode(2, "卢", "CS啊啊");
         HeroNode node3 = new HeroNode(3, "驱动器", "妻妾成群");
+        HeroNode node4 = new HeroNode(4, "玩儿GV放弃", "充气式");
+
 
 //        singleLinkedList.addNode(node1);
 //        singleLinkedList.addNode(node3);
@@ -20,41 +24,98 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOrder(node1);
         singleLinkedList.addByOrder(node3);
         singleLinkedList.addByOrder(node2);
+        singleLinkedList.addByOrder(node4);
 
-        HeroNode node4 = new HeroNode(4, "玩儿GV放弃", "充气式");
 //        singleLinkedList.remove(node4);
+//        reverseLinkList2(singleLinkedList.getHead());
 
+        reversePrint(singleLinkedList.getHead());
+//        singleLinkedList.list();
 
-        singleLinkedList.list();
+//        System.out.println("结点个数" + countNode(singleLinkedList.getHead()));
+//
+//        System.out.println(findLastIndexNode(singleLinkedList.getHead(), 1));
 
-        System.out.println("结点个数"+countNode(singleLinkedList.getHead()));
-
-        System.out.println(findLastIndexNode(singleLinkedList.getHead(),1));
 
 
     }
 
     /**
-     * 查找链表倒数第k个结点
-     *
-     * @param k 倒数第kge
-     * @param head 头结点
-     * @return 数第k个结点
+     * 利用栈逆序打印链表
+     * @param head
      */
-    public static HeroNode findLastIndexNode(HeroNode head,int k)throws Exception {
-
+    public static void reversePrint(HeroNode head){
         if (head.next == null){
+            System.out.println("空链表");
+        }
+        HeroNode cur = head.next;
+        Stack<HeroNode> stack = new Stack<HeroNode>();
+        while (cur != null){
+            stack.push(cur);
+            cur = cur.next;
+        }
+        while (stack.size() > 0){
+            System.out.println(stack.pop());
+        }
+    }
+
+    /**
+     * 递归法反转链表,反转无表头链表
+     *
+     * @param head 原链表头
+     * @return head
+     */
+    public static HeroNode reverseLinkList(HeroNode head) {
+        if (head == null || head.next == null) {
+            System.out.println("空列表");
+            return head;
+        }
+        HeroNode temp = head.next;
+        HeroNode newHead = reverseLinkList(head.next);
+        temp.next = head;
+        head.next = null;
+        return newHead;
+    }
+
+    /**
+     * 遍历法反转链表
+     *
+     * @param head 原链表头
+     * @return
+     */
+    public static HeroNode reverseLinkList2(HeroNode head) {
+        HeroNode pre = null;
+        HeroNode next = null;
+        while (head != null){
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
+        /**
+         * 查找链表倒数第k个结点
+         *
+         * @param k    倒数第kge
+         * @param head 头结点
+         * @return 数第k个结点
+         */
+    public static HeroNode findLastIndexNode(HeroNode head, int k) throws Exception {
+
+        if (head.next == null) {
             System.out.println("空列表");
             return null;
         }
         int size = countNode(head);
-        if (k <= 0 || k>size){
+        if (k <= 0 || k > size) {
             throw new Exception("查询范围越界");
         }
         //第一个有效结点
         HeroNode cur = head.next;
 
-        for (int i = 0;i<size-k;i++){
+        for (int i = 0; i < size - k; i++) {
             cur = cur.next;
         }
         return cur;

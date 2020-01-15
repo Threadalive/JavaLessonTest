@@ -113,6 +113,8 @@ public class Chacter05 {
         while (System.currentTimeMillis() < end) {
             conn.watch(startKey);
             String hourStart = ISO_FORMAT.format(new Date());
+
+            //续存时间
             String existing = conn.get(startKey);
 
             Transaction trans = conn.multi();
@@ -137,3 +139,5 @@ public class Chacter05 {
         }
     }
 }
+
+
