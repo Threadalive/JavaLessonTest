@@ -199,7 +199,7 @@ class SingleLinkedList {
     }
 
     /**
-     * 修改离岸边结点
+     * 修改结点
      *
      * @param newNeroNode
      */
@@ -270,7 +270,6 @@ class SingleLinkedList {
                 temp = temp.next;
             }
         }
-
     }
 }
 

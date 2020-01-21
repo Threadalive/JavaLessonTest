@@ -14,11 +14,6 @@ import java.util.*;
  * @Date 2020/1/15 16:38
  */
 public class Counter {
-    public static final String DEBUG = "debug";
-    public static final String INFO = "info";
-    public static final String WARNING = "warning";
-    public static final String ERROR = "error";
-    public static final String CRITICAL = "critical";
 
     public static final SimpleDateFormat TIMESTAMP =
             new SimpleDateFormat("EEE MMM dd HH:00:00 yyyy");
@@ -95,9 +90,10 @@ public class Counter {
     public static final int[] PRECISION = new int[]{1, 5, 60, 300, 3600, 18000, 86400};
 
     public void updateCounter(Jedis conn, String name, int count, long now) {
+        //执行多条命令
         Transaction trans = conn.multi();
         for (int prec : PRECISION) {
-            //去除余数
+            //取整精度时
             long pnow = (now / prec) * prec;
             String hash = String.valueOf(prec) + ':' + name;
             trans.zadd("known:", 0, hash);
