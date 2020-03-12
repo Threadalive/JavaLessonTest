@@ -1,6 +1,7 @@
 package com.redis;
 
 import javafx.util.Pair;
+import org.slf4j.Logger;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 
@@ -9,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * @Description TODO
+ * @Description Redis实现计数器
  * @Author zhenxing.dong
  * @Date 2020/1/15 16:38
  */
@@ -20,6 +21,7 @@ public class Counter {
     private static final SimpleDateFormat ISO_FORMAT =
             new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:00");
 
+
     static {
         ISO_FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
@@ -29,7 +31,6 @@ public class Counter {
 
     public static void main(String args[]) {
         new Counter().run();
-
     }
 
     public void run() {
