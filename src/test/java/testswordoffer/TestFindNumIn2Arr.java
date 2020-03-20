@@ -1,4 +1,4 @@
-package com.algorithm.swordoffer.test;
+package testswordoffer;
 
 import com.algorithm.swordoffer.impl.FindNumIn2Arr;
 import org.junit.Test;

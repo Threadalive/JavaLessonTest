@@ -1,4 +1,4 @@
-package com.algorithm.swordoffer.test;
+package testswordoffer;
 
 import org.junit.Test;
 
