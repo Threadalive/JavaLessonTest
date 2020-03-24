@@ -12,8 +12,17 @@ public class LRUCache {
      * cache
      */
     private Hashtable<String,DLinkNode> cache = new Hashtable<String, DLinkNode>();
+    /**
+     * 当前大小
+     */
     private int count;
+    /**
+     * 容量大小
+     */
     private int capacity;
+    /**
+     * 双向链表头尾结点
+     */
     private DLinkNode head, tail;
 
     /**

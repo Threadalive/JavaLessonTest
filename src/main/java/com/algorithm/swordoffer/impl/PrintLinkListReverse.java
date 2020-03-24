@@ -45,8 +45,8 @@ public class PrintLinkListReverse {
 
         ArrayList<Integer> list = new ArrayList<Integer>();
 
-        if (pHead != null){
-            if (pHead.next != null){
+        if (pHead != null) {
+            if (pHead.next != null) {
                 printListReverse2(pHead.next);
             }
             list.add(pHead.val);
@@ -55,7 +55,7 @@ public class PrintLinkListReverse {
     }
 }
 
-    class ListNode {
-        int val;
-        ListNode next;
-    }
+class ListNode {
+    int val;
+    ListNode next;
+}

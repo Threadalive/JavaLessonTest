@@ -1,5 +1,7 @@
 package com.algorithm;
 
+import java.math.BigDecimal;
+
 /**
  * @Description TODO
  * @Author zhenxing.dong
@@ -18,11 +20,17 @@ public class Test {
 
 //        int count = (int) (Math.random() * 5) + 1;
 //        System.out.println(count);
-        int a = 10;
-        a++;
-        Test.a++;
-        Test t = new Test();
-        System.out.println("a:"+a+"t.a:"+t.a);
+//        int a = 10;
+//        a++;
+//        Test.a++;
+//        Test t = new Test();
+//        System.out.println("a:"+a+"t.a:"+t.a);
+        float sum = 0;
+
+        for (int i=0;i<100;i++){
+            sum += 0.625;
+        }
+        System.out.println(sum);
     }
 
 }
