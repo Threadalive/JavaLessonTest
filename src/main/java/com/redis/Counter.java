@@ -115,7 +115,7 @@ public class Counter {
                     Integer.parseInt(entry.getKey()),
                     Integer.parseInt(entry.getValue())));
         }
-//        Collections.sort(results);
+//        COLLATOR..sort(results);
         return results;
     }
 
@@ -153,20 +153,19 @@ public class Counter {
                     String hash = hashSet.iterator().next();
                     int prec = Integer.parseInt(hash.substring(0, hash.indexOf(':')));
                     int bprec = (int)Math.floor(prec / 60);
+                    //精度在1分钟以内
                     if (bprec == 0){
                         bprec = 1;
                     }
                     if ((passes % bprec) != 0){
                         continue;
                     }
-
                     String hkey = "count:" + hash;
                     String cutoff = String.valueOf(
                             ((System.currentTimeMillis() + timeOffset) / 1000) - sampleCount * prec);
                     ArrayList<String> samples = new ArrayList<String>(conn.hkeys(hkey));
                     Collections.sort(samples);
                     int remove = bisectRight(samples, cutoff);
-
                     if (remove != 0){
                         conn.hdel(hkey, samples.subList(0, remove).toArray(new String[0]));
                         if (remove == samples.size()){

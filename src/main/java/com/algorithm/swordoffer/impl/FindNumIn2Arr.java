@@ -32,7 +32,6 @@ public class FindNumIn2Arr {
         return false;
     }
 
-
     /**
      * 二分法查询
      *
