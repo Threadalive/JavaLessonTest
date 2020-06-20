@@ -60,13 +60,13 @@ public class RpcExporter  {
                 String interfacename = input.readUTF();
                 Class<?> service = Class.forName(interfacename);
 
-                String mothedName = input.readUTF();
+                String methodName = input.readUTF();
 
                 Class<?>[] parametersType = (Class<?>[])input.readObject();
 
                 Object[] parameters = (Object[]) input.readObject();
 
-                Method method = service.getMethod(mothedName,parametersType);
+                Method method = service.getMethod(methodName,parametersType);
 
                 //反射执行方法
                 Object result = method.invoke(service.newInstance(),parameters);
